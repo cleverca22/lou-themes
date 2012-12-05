@@ -1,0 +1,3 @@
+#!/bin/bash
+sqlite3 ~/.mozilla/firefox/gec9cnvl.lou/lou-log.sqlite 'select * from urls' | sort > urls
+sqlite3 ~/.mozilla/firefox/gec9cnvl.lou/lou-log.sqlite 'select * from skins' | sort > skins
