@@ -1,10 +1,15 @@
 #!/bin/bash
 rm output.html
 for skin in 363511 382540; do
+	rm list
 	cat urls | while read x
 		do DIR=`dirname $x`
 		mkdir -p $skin/$DIR
-		wget -O $skin/$x http://prodcdngame.lordofultima.com/cdn/$skin/resource/webfrontend/$x
+		#wget -O $skin/$x http://prodcdngame.lordofultima.com/cdn/$skin/resource/webfrontend/$x
+		echo http://prodcdngame.lordofultima.com/cdn/$skin/resource/webfrontend/$x >> list
 		echo $x'<br><img src="'$skin/$x'"><br>' >> output.html
 	done
+	pushd "$skin"
+	wget -N -i ../list -x -nH --cut-dirs=4
+	popd
 done
